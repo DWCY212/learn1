@@ -198,17 +198,17 @@ c function to combine numbers and vectors
     sample(1:10,replace=TRUE)
 
 3.1 Multivariate normal distribution
-# Generate a random sample with size n from the multivariate normal distribution 
-# \ (N_3(\ mu,\ Sigma)\ ), 
+# Generate a random sample with size n from the multivariate normal distribution
+# \ (N_3(\ mu,\ Sigma)\ ),
 # where \ [ \ mu=\ left( \ begin{array}{c} 3 \\ 1 \\ 4 \ end{array} \ right),
 # \ Sigma=\ left( \ begin{array}{ccc} 3 & 0 & 2 \\ 0 & 1 & 1 \\ 2 & 1 & 9 \\ \ end{array} \ right) \ ]
 
 3.1.1. Using mvrnorm()
     # install.packages('mvnfast')
     library('mvnfast')
-    
+
     # ?rmvt
-    
+
     # install.packages('MASS')
     library(MASS)
     set.seed(1)
@@ -221,14 +221,14 @@ c function to combine numbers and vectors
 
     cov(Data5)
 
-# Repeat with 500 samples, now the sample means and covariance matrix are closer to \(\mu\) and \(\Sigma\)
+# Repeat with 500 samples, now the sample means and covariance matrix are closer to \ (\ mu\ ) and \ (\ Sigma\ )
     Data500 <- mvrnorm(n = 500, mu = mu, Sigma = Sigma)
     apply(Data500, 2, mean)
 
     cov(Data500)
 
 3.1.2. Not using mvrnorm()
-# Generate random numbers from \ (N_p(\ mu,\ Sigma)\ ) using numbers generated from \ (N(0,1)\ ).
+# Generate random numbers from \ (N_p(\ mu,\ Sigma)\ ) using number
     mvn <- function(n, mu, Sigma) {
         p <- length(mu)
         eS <- eigen(Sigma)
@@ -246,7 +246,7 @@ c function to combine numbers and vectors
 # plot function to plot R objects.
     x <- rnorm(100)
     y <- rnorm(100)
-    plot(x, y, main="X-Y Plot", xlab="x-axis")
+    plot(x, y, main='X-Y Plot', xlab='x-axis')
     abline(0,1) # add a y=x line
 "
 
@@ -319,16 +319,16 @@ c function to combine numbers and vectors
     }
     useq=seq(0,5,length=100);vseq=seq(0,5,length=100);CGseq=outer(useq,vseq,CG)
 
-    # install.packages("plot3D")
+    # install.packages('plot3D')
     library(plot3D)
 
     # Perspective Plot
     par(mfrow = c(1,1), mar = c(1,5,1,5))
-    persp3D(useq,vseq,CGseq,theta=45,phi=45,main="Perspective Plot",xlab="u",ylab="v",zlab="C_G")
+    persp3D(useq,vseq,CGseq,theta=45,phi=45,main='Perspective Plot',xlab='u',ylab='v',zlab='C_G')
 
     # Contour Plot
     par(mfrow = c(1,1), mar = c(3,5,2,5))
-    contour2D(CGseq,main="Contour Plot",xlab="u",ylab="v", lwd = 2)
+    contour2D(CGseq,main='Contour Plot',xlab='u',ylab='v', lwd = 2)
 
     # Correct the axes' values in the contour plot:
     xcuts <- seq(min(useq),max(useq),length.out = 6)
@@ -348,27 +348,29 @@ c function to combine numbers and vectors
     for(i in 1:(length(factsy))){
     comma_sep <- unlist(gregexpr(pattern =',',factsy[i])) # location of the comma in the factor
     #taking section of text and converting to numbers
-    ylabsFacts[i] <- as.numeric(substr(factsy[i],2,comma_sep-1)) 
+    ylabsFacts[i] <- as.numeric(substr(factsy[i],2,comma_sep-1))
     ylabsFacts[i+1] <- as.numeric(substr(factsy[i],comma_sep+1,nchar(factsy[i])-1))
     }
     # Contour Plot with Correct Axes' values
-    contour2D(CGseq,main="Contour Plot",xaxt="n", yaxt="n", xlab="u",ylab="v", lwd = 2)
+    contour2D(CGseq,main='Contour Plot',xaxt='n', yaxt='n', xlab='u',ylab='y', lwd = 2)
     axis(side=1,at=seq(0,1,length.out = length(xlabsFacts)),labels=round(xlabsFacts,2))
     axis(side=2,at=seq(0,1,length.out = length(ylabsFacts)),labels=round(ylabsFacts,2))
 
     # Heat Map
     par(mfrow = c(1,1), mar = c(3,5,2,5))
-    image2D(CGseq,main="Heat Map",xlab="u",ylab="v", lwd = 2)
+    image2D(CGseq,main='Heat Map',xlab='u',ylab='v', lwd = 2)
 
     # Heat Map with Correct Axes' values
-    image2D(CGseq,main="Heat Map",xaxt="n", yaxt="n", xlab="u",ylab="v", lwd = 2)
+    image2D(CGseq,main='Heat Map',xaxt='n', yaxt='n', xlab='u',ylab='v', lwd = 2)
     axis(side=1,at=seq(0,1,length.out = length(xlabsFacts)),labels=round(xlabsFacts,2))
     axis(side=2,at=seq(0,1,length.out = length(ylabsFacts)),labels=round(ylabsFacts,2))
 
     # Surface+Contour Plots
     par(mfrow = c(1,2), mar = c(3,5,2,5))
-    persp3D(useq,vseq,CGseq,contour=TRUE,theta=45,phi=45, zlim= c(-max(CGseq), max(CGseq)),main="Surface+Contour Plots",xlab="u",ylab="v",zlab="C_G")
-    persp3D(z = CGseq, contour=list(side=c("zmax", "z")), zlim= c(min(CGseq), 1.5*max(CGseq)-min(CGseq)/2), phi=45, theta=45, d=10 ,main="Surface+Contour Plots",xlab="u",ylab="v",zlab="C_G")
+    persp3D(useq,vseq,CGseq,contour=TRUE,theta=45,phi=45, zlim= c(-max(CGseq), max(CGseq)),main='Surface+Contour Plots',xlab='u',ylab='v',zlab='C_G')
+    persp3D(z = CGseq, contour=list(side=c('zmax', 'z')), zlim= c(min(CGseq),
+    1.5*max(CGseq)-min(CGseq)/2), phi=45, theta=45, d=10 ,
+    main='Surface+Contour Plots',xlab='u',ylab='v',zlab='C_G')
 
 # Day 1, page 35, vector function example
     xseq=seq(-4, 4, 0.5)
@@ -393,20 +395,21 @@ c function to combine numbers and vectors
     F2vals=as.vector(F2vals)
     F1vals2=F1vals/(max(F1vals)-min(F1vals))/2 #Scaled down
     F2vals2=F2vals/(max(F2vals)-min(F2vals))/2 #Scaled down
-    # install.packages("grid")
-    # install.packages("ggplot2")
+    # install.packages('grid')
+    # install.packages('ggplot2')
     library(grid)
     library(ggplot2)
 
     df <- data.frame(x=xvals,y=yvals,dx=F1vals2,dy=F2vals2)
-    ggplot(data=df, aes(x=x, y=y)) + geom_segment(aes(x=x, y=y,xend=x+dx, yend=y+dy), arrow = arrow(length = unit(0.15,"cm")))
+    ggplot(data=df, aes(x=x, y=y)) + geom_segment(aes(x=x, y=y,xend=x+dx, yend=y+dy),
+        arrow = arrow(length = unit(0.15,'cm')))
 
 # Day 2, page 16, Gauss-Jordan elimination example
     A=matrix(c(1,1,2,-5,2,5,-1,-9,2,1,-1,3,1,-3,2,7),nrow=4,byrow=TRUE)
     b=c(3,-3,-11,-5)
 
     # Reduced row echelon form
-    # install.packages("pracma")
+    # install.packages('pracma')
     library(pracma)
     rref(cbind(A,b))
 
